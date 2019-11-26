@@ -13,17 +13,33 @@ import temper
 import relay
 import cam
 
-os.system('modprobe w1-gpio')
-os.system('modprobe w1-therm')
+
+def runningTime(self):
+    pass
+
+def nowMin(self, nowTime):
+    self.nowTime = nowTime
+    min = nowTime.strftime('%M')
+    return min
+    
+if __name__ == "__main__" :
+    os.system('modprobe w1-gpio')
+    os.system('modprobe w1-therm')
 
 
-base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '28*')[0]
-device_file = device_folder + '/w1_slave' #temp_sensor
+    base_dir = '/sys/bus/w1/devices/'
+    device_folder = glob.glob(base_dir + '28*')[0]
+    device_file = device_folder + '/w1_slave' #temp_sensor
 
-db = pymysql.connect(host='18.222.181.183', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
-cur = db.cursor();
+    image_folder = '/home/pi/Documents/test/'
 
-while True:
-    temper.sendDB()
+    db = pymysql.connect(host='18.216.172.165', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
+    cur = db.cursor();
+
+    while True:
+        nowTime = datetime.datetime.now()
+        if(nowMin(nowTime)%10 == 0):
+            temper.sendtmpDB(db)
+        elif(nowMin(nowTime)%23 == 0):
+            cam.sendomgDb(db)
     

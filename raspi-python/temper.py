@@ -20,6 +20,7 @@ cur = db.cursor();
 class tmp :
     def __init__(self):
         pass
+
     def temp_c_Read(self):
         f = open(device_file,'r')
         lines = f.readlines()
@@ -40,8 +41,10 @@ class tmp :
             temp_c = float(temp_string) / 1000.0
             temp_f = temp_c * 9.0 / 5.0 + 32.0
         return round(temp_f, 2)
-    def sendDB(self, db):
+
+    def sendtmpDB(self, db):
         self.db = db
+        
         temp_c = self.temp_c_Read()
         temp_f = self.temp_f_Read()
         print ("c:{0} f:{1}".format(temp_c, temp_f))
