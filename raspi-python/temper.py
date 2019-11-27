@@ -45,6 +45,8 @@ class tmp :
     def sendtmpDB(self, db):
         self.db = db
         
+        err = 0
+
         temp_c = self.temp_c_Read()
         temp_f = self.temp_f_Read()
         print ("c:{0} f:{1}".format(temp_c, temp_f))
@@ -63,10 +65,12 @@ class tmp :
             # commit to db
             db.commit() 
             print ("tempData Write Complete")
-            time.sleep(10)
+            return err
         
         except :
             #rollback
             db.rollback()
+            err = 1
             print ("Failed writing tempData to Database")
+            return err
 

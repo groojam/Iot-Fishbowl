@@ -25,6 +25,9 @@ class cam :
 
     def sendimgDB(self, db):
         self.db = db
+
+        err = 0
+
         with picamera.PiCamera() as camera:
             camera.resolution = (1024,768)
             now = time.strftime("%y%m%d%H%M%S")
@@ -47,11 +50,14 @@ class cam :
                 # commit to db
                 db.commit() 
                 print ("Write imgData Complete")
+                return err
         
             except :
                 #rollback
                 db.rollback()
+                err = 1
                 print ("Failed writing imgData to Database")
+                return err
 #with picamera.PiCamera() as camera:
     #camera.resolution = (1024,768)
     #camera.start_preview()
