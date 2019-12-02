@@ -63,28 +63,36 @@ if __name__ == "__main__" :
 
     while True:
         
-        err = 0
-        toggle = 0
-        nowTime = datetime.datetime.now()
-        signal = client_socket.recv(1024)
-
-        print("어항관리 시스템 작동 시작")
-        if(nowMin(nowTime)%10 == 0):
-            temper.sendtmpDB(db)
-            events.endevtDB(temper, err)
-        elif(nowMin(nowTime)%23 == 0):
-            cam.sendomgDb(db)
-            events.endevtDB(cam, err)
-        signal = svr.ctrSignal()
-        if(signal == 0):
+        try:
+            err = 0
             toggle = 0
-            relay.ctrl(toggle)
-        elif(signal == 1):
-            toggle = 1
-            relay.ctrl(toggle)
+            nowTime = datetime.datetime.now()
+            signal = client_socket.recv(1024)
+
+            print("어항관리 시스템 작동 시작")
+            if(nowMin(nowTime)%10 == 0):
+                temper.sendtmpDB(db)
+                events.endevtDB(temper, err)
+            elif(nowMin(nowTime)%23 == 0):
+                cam.sendomgDb(db)
+                events.endevtDB(cam, err)
+            signal = svr.getSignalData()
+            dev_no = svr.getDevData()
+            
+            if(signal == 0):
+                status = 0
+                relay.ctrl(dev_no, status)
+            elif(signal == 1):
+                status = 1
+                relay.ctrl(dev_no, status)
+
+        except Exception as e:
+            print('py main error!')
+            break
 
 client_socket.close()
 server_socket.close()
+sys.exit()
 
         
         
