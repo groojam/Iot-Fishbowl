@@ -11,6 +11,7 @@ import picamera
 import RPi.GPIO as GPIO
 
 #통신 라이브러리
+import socket
 #import urllib.response
 #import urllib.request
 #import http.server
@@ -22,7 +23,19 @@ import relay
 import cam
 import events
 import client
+import svr
 
+host = '18.216.172.165'
+
+port = 9999
+
+server_socket = socket.scoket(socket.AF_INET, soket.SOCK_STREAM)
+
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server_socket.bind((host, port))
+server_socket.listen()
+client_socket, addr = server_socket.accept()
+print('Connected by', addr)
 
 def runningTime(self):
     pass
@@ -49,20 +62,29 @@ if __name__ == "__main__" :
     cam = cam
 
     while True:
+        
         err = 0
         toggle = 0
         nowTime = datetime.datetime.now()
+        signal = client_socket.recv(1024)
+
+        print("어항관리 시스템 작동 시작")
         if(nowMin(nowTime)%10 == 0):
             temper.sendtmpDB(db)
             events.endevtDB(temper, err)
         elif(nowMin(nowTime)%23 == 0):
             cam.sendomgDb(db)
             events.endevtDB(cam, err)
-        signal = client.datas
+        signal = svr.ctrSignal()
         if(signal == 0):
+            toggle = 0
             relay.ctrl(toggle)
         elif(signal == 1):
+            toggle = 1
             relay.ctrl(toggle)
+
+client_socket.close()
+server_socket.close()
 
         
         
