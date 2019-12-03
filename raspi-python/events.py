@@ -5,7 +5,7 @@ import datetime
 #import mysql.connector
 import pymysql
 
-db = pymysql.connect(host='18.222.181.183', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
+db = pymysql.connect(host='18.216.172.165', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
 cur = db.cursor();
 
 class events:
