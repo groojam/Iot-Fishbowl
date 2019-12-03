@@ -9,17 +9,17 @@ os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
 
-base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '28*')[0]
-device_file = device_folder + '/w1_slave' #temp_sensor
 
-#Variables for DBConnection
-
-db = pymysql.connect(host='18.222.181.183', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
-cur = db.cursor();
 class tmp :
     def __init__(self):
-        pass
+        self.base_dir = '/sys/bus/w1/devices/'
+        self.device_folder = glob.glob(base_dir + '28*')[0]
+        self.device_file = device_folder + '/w1_slave' #temp_sensor
+
+        #Variables for DBConnection
+
+        self.db = pymysql.connect(host='18.222.181.183', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
+        self.cur = db.cursor();
 
     def temp_c_Read(self):
         f = open(device_file,'r')

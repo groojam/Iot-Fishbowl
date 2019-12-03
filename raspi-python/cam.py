@@ -7,14 +7,11 @@ import os
 import glob
 import datetime
 
-db = pymysql.connect(host='18.222.181.183', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
-cur = db.cursor();
-
-image_folder = '/home/pi/Documents/test/'
-
 class cam :
     def __init__(self):
-        pass
+        self.db = pymysql.connect(host='18.222.181.183', user='pi', passwd='pikey999', db='raspi_db', charset='utf8');
+        self.cur = db.cursor();
+        self.image_folder = '/home/pi/Documents/test/'
 
     def read_file(self, filename):
         self.filename = filename

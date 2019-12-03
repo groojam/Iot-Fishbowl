@@ -60,7 +60,7 @@ if __name__ == "__main__" :
 
     temper = temper
     cam = cam
-
+    
     while True:
         
         try:
