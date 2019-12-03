@@ -5,6 +5,8 @@ import time
 import base64
 import sys
 import pymysql
+import socket
+import sys
 
 #카메라 라이브러리
 import picamera
@@ -23,19 +25,20 @@ import relay
 import cam
 import events
 import client
-import svr
+#import svr
+#import svr2
 
-host = '18.216.172.165'
+#host = '18.216.172.165'
 
-port = 9999
+#port = 9999
 
-server_socket = socket.scoket(socket.AF_INET, soket.SOCK_STREAM)
+#server_socket = socket.scoket(socket.AF_INET, soket.SOCK_STREAM)
 
-server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server_socket.bind((host, port))
-server_socket.listen()
-client_socket, addr = server_socket.accept()
-print('Connected by', addr)
+#server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+#server_socket.bind((host, port))
+#server_socket.listen()
+#client_socket, addr = server_socket.accept()
+#print('Connected by', addr)
 
 def runningTime(self):
     pass
@@ -60,12 +63,51 @@ if __name__ == "__main__" :
 
     temper = temper
     cam = cam
+
+
+    HOST = '' #all available interfaces
+    PORT = 7777
+
+    def getDevData(dev_no) :
+        return dev_no
     
+    def getSingalData(status):
+        return status
+    #1. open Socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print ('Socket created')
+
+    #2. bind to a address and port
+    try:
+        s.bind((HOST, PORT))
+    except socket.error as msg:
+        print ('Bind Failed. Error code: ' + str(msg[0]) + ' Message: ' + msg[1])
+        sys.exit()
+
+    print ('Socket bind complete')
+
+    #3. Listen for incoming connections
+    s.listen(10)
+    print ('Socket now listening')
+
+    
+
+
     while True:
         
         try:
+            #4. Accept connection    
+            conn, addr = s.accept()
+            print ('Connected with ' + addr[0] + ':' + str(addr[1]))
+    
+            #5. Read/Send
+            ori_data = conn.recv(1024)
+            if not ori_data:
+                break
+            data = ori_data.decode().split(',')
+            dev_no = data[0]
+            signal = data[1]
             err = 0
-            toggle = 0
             nowTime = datetime.datetime.now()
             signal = client_socket.recv(1024)
 
@@ -76,8 +118,6 @@ if __name__ == "__main__" :
             elif(nowMin(nowTime)%23 == 0):
                 cam.sendomgDb(db)
                 events.endevtDB(cam, err)
-            signal = svr.getSignalData()
-            dev_no = svr.getDevData()
             
             if(signal == 0):
                 status = 0

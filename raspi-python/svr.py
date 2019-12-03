@@ -11,7 +11,7 @@ class svr:
     def __init__(self) :
         #jsp 와 통신하는 서버. 제어신호를 받는다.
         self.HOST = ''
-        self.PORT = 7000
+        self.PORT = 10000
         self.BUFSIZE = 1024
         self.ADDR = (HOST, PORT)
         self.dev_no = 0
