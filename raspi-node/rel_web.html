@@ -12,19 +12,24 @@
 
       <h1>LED page</h1>
 
-      <form action = '/data' method = 'post'>
+      <form action = '125.177.204.50:11058' method = 'post'>
 		<table>
-		<thead>릴레이 제어</thead>
+		<thead>relaycontrol</thead>
 			<tr>
 				<td colspan="2"></td>
 			</tr>
 			<tr>
 				<td>
-				    <input type = 'radio' value = '1' name = 'divnum' >
-        			<input type = 'radio' value = '2' name = 'divnum' >
-        			<input type = 'radio' value = '3' name = 'divnum' >
+					<input type = 'radio' value = '1' name = 'divnum' >
 				</td>
-				<td>
+			<tr>
+				<td><input type = 'radio' value = '2' name = 'divnum' ></td>
+			</tr>
+			<tr>
+
+			</tr>
+        		<td><input type = 'radio' value = '3' name = 'divnum' ></td>
+				<td rowspan="3">
 				    <input type = 'submit' value = 'on' name = 'state' >
         			<input type = 'submit' value = 'off' name = 'state' >
 				</td>

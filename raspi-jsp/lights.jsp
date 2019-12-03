@@ -52,6 +52,7 @@
             background-color: lightgrey;
         }
 </style>
+<script type="text/javascript" src="./relayweb.js" ></script> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -76,7 +77,8 @@
         </ul> 
      </nav>
      <div>
-     <%
+         <%@include file="rel_web.html"%>
+     <!--<%
      	Socket socket = null;            //Server와 통신하기 위한 Socket
      	BufferedReader in = null;        //Server로부터 데이터를 읽어들이기 위한 입력스트림
      	BufferedReader in2 = null;        //키보드로부터 읽어들이기 위한 입력스트림
@@ -104,7 +106,7 @@
 	         
 	     }catch(IOException e) {}
 	     
-     %>
+     %>-->
      </div>
 
 </body>

@@ -42,7 +42,7 @@ while 1:
     data = ori_data.decode().split(',')
     dev_no = data[0]
     status = data[1]
-    return dev_no, status
+    
     
 conn.close()
 s.close()
