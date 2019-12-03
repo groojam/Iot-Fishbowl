@@ -89,7 +89,8 @@ if __name__ == "__main__" :
     #3. Listen for incoming connections
     s.listen(10)
     print ('Socket now listening')
-
+    conn, addr = s.accept()
+    print ('Connected with ' + addr[0] + ':' + str(addr[1]))
     
 
 
@@ -97,13 +98,12 @@ if __name__ == "__main__" :
         
         try:
             #4. Accept connection    
-            conn, addr = s.accept()
-            print ('Connected with ' + addr[0] + ':' + str(addr[1]))
+            
     
             #5. Read/Send
             ori_data = conn.recv(1024)
             if not ori_data:
-                break
+                print("There is no Data!")
             data = ori_data.decode().split(',')
             dev_no = data[0]
             signal = data[1]
