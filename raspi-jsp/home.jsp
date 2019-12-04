@@ -85,7 +85,7 @@
 		</tr>
 		<tr>
 			<td id="td2" colspan="2">
-				<img align="middle" src="/showimage.jsp">
+				<img align="middle" src="/img.jsp">
 			</td>
 			<td id="td1" >
 				<jsp:include page="/heater.jsp" flush="false"></jsp:include>
