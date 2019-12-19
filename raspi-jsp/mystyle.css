@@ -1,0 +1,136 @@
+@charset "utf-8";
+		.body {width:100%; height:100%; margin: 0; background-color: #f1f2f3; font-family: sans-serif; font-size: 14px; color: #151d2d;
+        }
+		#topMenu {
+                height:70px; /*메뉴 높이 설정*/
+                width:100vw; /*메뉴 넓이 설정*/
+        }
+        #topMenu ul li{
+            list-style: none; /*목록 리스트 기호 없앰*/
+            color: black;  /*글씨 색 지정*/
+            background-color: #c1bebe;
+            float: left; /*좌우 정렬 속성*/
+            line-height: 70px; /*글씨가 가운데로 오도록 하기 위해 한 줄의 높이를 30px로 설정*/
+            vertical-align: middle; /*세로 정렬을 가운데로 설정*/
+            text-align: center;
+            
+        }
+        #topMenu .menu {
+            text-decoration: none;  /*a태그 기본 꾸밈효과 없앰*/
+            color:black;
+            display: block;  /*영역 클릭시에도 링크 연결되게 설정*/
+            width: 15vw;  /*메뉴 링크 넓이 설정*/
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #topMenu .menu:hover{
+        	color: white;  /*글씨 색 지정*/
+            background-color: #000000;
+        }
+        #form-set {
+        	width: 100px;
+        	display: inline;
+         	vertical-align: middle; /*세로 정렬을 가운데로 설정*/
+            text-align: center;
+         	
+         }
+        #logintxt{
+        	background-color:#eeb969;
+        	width: 70px;
+        	display: inline;
+        	margin:10px;
+        }
+        #loginbtn{
+        	width: 70px;
+        	display: inline;
+        }
+        #inputbtn{
+        	background-color:orange;
+        	margin:10px;
+        	border-style:ridge;
+        }
+        #inputbtn:hover{
+        	color:red;
+            background-color: #e3941c;
+        }
+        #searchtxt{
+        	background-color:#eeb969;
+        	margin:1px;
+        }
+        #cata{
+        	margin: 0 auto;
+        	border-top: 10px;
+        	border-bottom: 10px;
+        	border-right: none;
+        	border-left: none;
+        	border-style: solid;
+        	border-color: red;
+        	
+        }
+        #catUl{
+        	text-align: center;
+        	list-style: none;
+        }
+        #catLi{
+        	display: inline-block;
+        	margin-left:15px;
+        	margin-right:15px;
+        }
+        #catLi:hover{
+        	color:red;
+            background-color: #e3941c;
+        }
+        .recomm{
+       		text-align: center;
+        	
+        
+        }
+        a:link { 
+        	color: black; 
+        	text-decoration: none;
+        	}
+ 		a:visited { 
+ 			color: black; 
+ 			text-decoration: none;
+ 			}
+ 		a:hover{
+       		text-decoration:underline;
+       	}
+       	#goods{
+       		display:block;
+       		text-align: center;
+       	}
+
+        #recomm1{
+        	display: inline-block;
+        	margin: 10px;
+        	text-align: left;
+        }
+        #recomm2{
+        	display: inline-block;
+        	margin: 10px;
+        	text-align: left;
+        }
+        #recomm3{
+        	display: inline-block;
+        	margin: 10px;
+        	text-align: left;
+        }
+        
+        #lghtTable{
+        	margin: 0 auto;
+        	text-align:center;
+        }
+        
+        #lghtControl{
+        	
+        
+        }
+        
+        #heatTable{
+        
+        }
+        
+        #heatControl{
+        }

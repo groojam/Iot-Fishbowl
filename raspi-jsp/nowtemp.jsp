@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 <meta charset="UTF-8">
 <title>어항관리</title>
 </head>
@@ -26,14 +27,17 @@
             rs = pstmt.executeQuery();
              
             while(rs.next()){
+            	
+            	String nowTempC = rs.getString("temp_c");
+     			String nowTempF  = rs.getString("temp_f");
     %>
 	<table>
 		<tr>
 			<td>현재 수온</td>
 		</tr>
 		<tr>
-			<td><%= rs.getString("temp_c") + "℃" + " / "%>
-     			<%= rs.getString("temp_f") + "℉"%>
+			<td>
+				<%= nowTempC + "℃" %>  /  <%= nowTempF + "℉"%>
      		</td>
 		</tr>
 	</table>

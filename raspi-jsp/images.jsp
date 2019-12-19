@@ -1,51 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ page import="java.sql.*"%>
+
+	<%@ page import="java.io.*"%>
+	<%@page import="java.awt.image.BufferedImage"%>
+	<%@page import="javax.imageio.ImageIO"%>
+	<%@page import="java.util.Enumeration"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-<style>
-	table{
-		border-collapse: collapse;
-		border: 1px;
-		padding: 50px;
-	}
-		#td1{
-			height: 300px;
-			width: 400px;
-		}
-		#td2{
-			height: 300px;
-			width: 640px;
-		}
-        #topMenu {
-                height:70px; /*메뉴 높이 설정*/
-                width:100vw; /*메뉴 넓이 설정*/
-        }
-        #topMenu ul li {
-            list-style: none; /*목록 리스트 기호 없앰*/
-            color: black;  /*글씨 색 지정*/
-            background-color: grey; /*배경 색 지정*/
-            float: left; /*좌우 정렬 속성*/
-            line-height: 70px; /*글씨가 가운데로 오도록 하기 위해 한 줄의 높이를 30px로 설정*/
-            vertical-align: middle; /*세로 정렬을 가운데로 설정*/
-            text-align: center;
-        }
-        #topMenu .menu {
-            text-decoration: none;  /*a태그 기본 꾸밈효과 없앰*/
-            color:black;
-            display: block;  /*영역클릭시에도 링크 연결되게 설정*/
-            width: 23.5vw;  /*메뉴 링크 넓이 설정*/
-            font-size: 24px;
-            font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        #topMenu .menu:hover {  /*menu클래스를 가진 태그에 마우스를 올릴경우의 스타일 설정 */
-            color:grey;
-            background-color: lightgrey;
-        }
-</style>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -63,8 +28,33 @@
             <li>
                 <a class="menu" title="조명" href="lights.jsp">조명</a>
             </li> 
+            <li>
+                <a class="menu" title="조명" href="lights.jsp">히터</a>
+            </li> 
         </ul> 
      </nav>
+     <div>
+		    <table id="imgTable">
+				<thead>사진</thead>
+					<tr id="imgControl">
+						<td>
+							<form action="Socket.jsp" method="POST">
+								<input type="radio" name="control" value="img">
+								<input type="hidden" name="device" value="light">
+			  					<input type="submit" value="사진 촬영">
+							</form>
 
+			  			</td>
+					</tr>
+					<tr id="imgControl">
+						<td>
+							<form action="CamSocket.jsp" method="POST">
+								<input type="text" name="camInter">(분) 간격 사진 촬영 설정
+			  					<input type="submit" value="간격 설정">
+			  			</form>
+						</td>
+					</tr>
+				</table>
+	</div>
 </body>
 </html>

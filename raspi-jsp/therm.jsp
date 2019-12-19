@@ -5,65 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    <!-- google charts -->
-       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<style>
-	table{
-		border-collapse: collapse;
-		border: 1px;
-		padding: 50px;
-	}
-		#td1{
-			height: 300px;
-			width: 400px;
-		}
-		#td2{
-			height: 300px;
-			width: 640px;
-		}
-        #topMenu {
-                height:70px; /*메뉴 높이 설정*/
-                width:100vw; /*메뉴 넓이 설정*/
-        }
-        #topMenu ul li {
-            list-style: none; /*목록 리스트 기호 없앰*/
-            color: black;  /*글씨 색 지정*/
-            background-color: grey; /*배경 색 지정*/
-            float: left; /*좌우 정렬 속성*/
-            line-height: 70px; /*글씨가 가운데로 오도록 하기 위해 한 줄의 높이를 30px로 설정*/
-            vertical-align: middle; /*세로 정렬을 가운데로 설정*/
-            text-align: center;
-        }
-        #topMenu .menu {
-            text-decoration: none;  /*a태그 기본 꾸밈효과 없앰*/
-            color:black;
-            display: block;  /*영역클릭시에도 링크 연결되게 설정*/
-            width: 23.5vw;  /*메뉴 링크 넓이 설정*/
-            font-size: 24px;
-            font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        #topMenu .menu:hover {  /*menu클래스를 가진 태그에 마우스를 올릴경우의 스타일 설정 */
-            color:grey;
-            background-color: lightgrey;
-        }
-</style>
+
+<link rel="stylesheet" type="text/css" href="mystyle.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>온도</title>
 
 
 </head>
 <body>
-
-    <div id="Line_Controls_Chart">
-      <!-- 라인 차트 생성할 영역 -->
-          <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
-      <!-- 컨트롤바를 생성할 영역 -->
-          <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
-        </div>
-
 	<nav id="topMenu"> 
     	<ul> 
         	<li>
@@ -77,9 +26,42 @@
             </li> 
             <li>
                 <a class="menu" title="조명" href="lights.jsp">조명</a>
-            </li> 
+            </li>
+            <li>
+                <a class="menu" title="히터" href="heater.jsp">히터</a>
+            </li>  
         </ul> 
      </nav>
+ <div>
+			<%
+				String toggle = null;
+				String device = null;
+				String signal = null;
+				
+				//signal = device.concat(",").concat(toggle);
+	    	 %>
+	    	 	<table id="heatTable">
+				<thead>온도 설정</thead>
+					<tr id="heatControl">
+						<td>
+							<form action="Socket.jsp" method="POST">
+								<input type="radio" name="control" value="on">히터 ON
+								<input type="radio" name="control" value="off">히터 OFF
+								<input type="hidden" name="device" value="heater" >
+			  					<input type="submit" value="히터  on/off">
+							</form>
+			  			</td>
+					</tr>
+					<tr id="heatControl">
+						<td>
+							<form action="TemperSocket.jsp" method="POST">
+								<input type="text" name="tempInter">(분) 간격 온도 측정 설정
+			  					<input type="submit" value="간격 설정">
+			  			</form>
+						</td>
+					</tr>
+				</table>
+     </div>
 
 </body>
 
